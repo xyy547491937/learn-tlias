@@ -1,0 +1,31 @@
+
+spring:
+  datasource:
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    url: jdbc:mysql://localhost:3306/tlias
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 100MB
+
+
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    map-underscore-to-camel-case: true
+
+# 定義數據
+hobby:
+  - java
+  - game
+  - sport
+
+
+# 七牛云 配置
+
+qiniu:
+  access-key: c85fQObE2fr9hP0jVerIMXFqJ36mh6QM7tntEeM_
+  bucket-name: web-tliass
+  secret-key: _CLSqhPo-w9Leoo-O-urkyGjZCK4WjMG6DCZrkOI

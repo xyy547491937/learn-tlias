@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.itheima.mapper.DeptMapper">
+    <insert id="insert">
+        insert into dept(name, create_time, update_time)
+        values
+        <if test="name != null">
+            #{name},
+        </if>
+        <if test="createTtime != null">
+            #{createTtime},
+        </if>
+        <if test="updateTime != null">
+            #{updateTime}
+        </if>
+    </insert>
+
+    <update id="updata" parameterType="com.itheima.pojo.Dept">
+        UPDATE dept
+        <set>
+            name = <if test="name != null">#{name}</if>,
+            updateTime = <if test="updateTime != null">#{updateTime}</if>
+
+        </set>
+        WHERE id = #{id}
+    </update>
+</mapper>
