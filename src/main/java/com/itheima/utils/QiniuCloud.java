@@ -18,21 +18,21 @@ import java.util.UUID;
 @Slf4j
 @Component
 public class QiniuCloud {
-//    @Value("${qiniu.bucket-name}")
-//    private String bucket;//xxxxxxxx换成七牛云的空间名称
-//    @Value("${qiniu.access-key}")
-//    private String accessKey;
-//    @Value("${qiniu.secret-key}")
-//    private String secretKey ;
+    @Value("${qiniu.bucket-name}")
+    private String bucket;//xxxxxxxx换成七牛云的空间名称
+    @Value("${qiniu.access-key}")
+    private String accessKey;
+    @Value("${qiniu.secret-key}")
+    private String secretKey ;
     //指定需要上传的文件路径
-    @Autowired
-    private QiNiuProperties qiNiuProperties;
+//    @Autowired
+//    private QiNiuProperties qiNiuProperties;
     public String upload(MultipartFile image) {
 
         // 依赖注入
-        String bucket = qiNiuProperties.getBucketName();
-        String accessKey = qiNiuProperties.getAccessKey();
-        String secretKey = qiNiuProperties.getSecretKey();
+//        String bucket = qiNiuProperties.getBucketName();
+//        String accessKey = qiNiuProperties.getAccessKey();
+//        String secretKey = qiNiuProperties.getSecretKey();
 
         //构造一个带指定 Region 对象的配置类
         Configuration cfg = new Configuration(Region.region1());
