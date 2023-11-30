@@ -3,6 +3,7 @@ package com.itheima.controller;
 import com.itheima.pojo.Emp;
 import com.itheima.pojo.Result;
 import com.itheima.service.EmpService;
+import com.itheima.utils.JwtUtil;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.HashMap;
 
 @Slf4j
 @RestController
@@ -34,6 +37,16 @@ public class LoginController {
     public Result login(@RequestBody Emp emp) {
         log.info("登录参数为{}", emp);
         Emp e = empService.login(emp);
-        return e != null ? Result.success() : Result.error("用户民或者密码错误");
+        String token="";
+        if(e!=null) {
+            // 生成jwt 令牌
+            HashMap<String, Object> c = new HashMap<>();
+            c.put("id",e.getId());
+            c.put("name",e.getName());
+            c.put("username",e.getUsername());
+
+            token = JwtUtil.generateToken(e.getId().toString());
+        }
+        return e != null ? Result.success(token) : Result.error("用户民或者密码错误");
     }
 }
